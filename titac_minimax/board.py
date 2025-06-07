@@ -1,7 +1,7 @@
 class Board:
     
     def __init__(self):
-        self.EMPTY_SPACE = '     ' #5 SPACEBAR
+        self.EMPTY_SPACE = ' '
         self.board_size = 3
         self.board = [[self.EMPTY_SPACE for i in range(self.board_size)] for i in range(self.board_size)]
     
@@ -9,7 +9,7 @@ class Board:
         '''prints the current board in the terminal'''
         print()
         for i in range(3):
-            print(f"{self.board[i][0]}|{self.board[i][1]}|{self.board[i][2]}")
+            print(f"  {self.board[i][0]}  |  {self.board[i][1]}  |  {self.board[i][2]}  ")
     
             if i < 2:
                 print("-----+-----+-----")
@@ -27,12 +27,12 @@ class Board:
             row = int(input("choose the row: "))
             column = int(input("choose the new column: "))
         
-        letter = "  "+letter+"  "
+        #letter = "  "+letter+"  "
         self.board[row-1][column-1] = letter
     
     def check_win(self, letter):
         '''verifies all the win conditions'''
-        letter = "  "+letter+"  "
+        #letter = "  "+letter+"  "
         
         #checks for wins on the rows
         for i in range(self.board_size):
@@ -50,7 +50,7 @@ class Board:
                 column_verified.append(self.board[i][j] == letter)
             
             if all(column_verified):
-                return True
+                return True            
         
         #checks for diagonals win starting in the top left
         i = 0
@@ -77,23 +77,12 @@ class Board:
             return True
 
         return False #caso de não vitoria
-        
-        
-        
-#testing
-tabuleiro = Board()
 
-tabuleiro.print_board()
-
-tabuleiro.set_letter("O", 1, 1)
-tabuleiro.set_letter("X", 1, 2)
-tabuleiro.set_letter("X", 1, 3)
-tabuleiro.set_letter("O", 2, 2)
-tabuleiro.set_letter("X", 2, 1)
-tabuleiro.set_letter("X", 2, 3)
-tabuleiro.set_letter("X", 3, 1)
-tabuleiro.set_letter("X", 3, 2)
-tabuleiro.set_letter("O", 3, 3)
-
-tabuleiro.print_board()
-print(tabuleiro.check_win("O"))
+    def check_draw(self):
+            '''checks if the current board defines a tie'''
+            for i in range(self.board_size):
+                for j in range(self.board_size):
+                    if self.board[i][j] == self.EMPTY_SPACE:
+                        return False
+            
+            return True   
