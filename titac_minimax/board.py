@@ -41,7 +41,7 @@ class Board:
                 row_verified.append(self.board[i][j] == letter)
             
             if all(row_verified):
-                return True, letter
+                return True
         
         #checks for win on the columns
         for j in range(self.board_size):
@@ -50,7 +50,7 @@ class Board:
                 column_verified.append(self.board[i][j] == letter)
             
             if all(column_verified):
-                return True, letter
+                return True
         
         #checks for diagonals win starting in the top left
         i = 0
@@ -64,6 +64,7 @@ class Board:
         if all(diagonal_verified):
             return True
 
+        #checks for diagonal starting from de top rightS
         diagonal_verified = []
         i = 0
         j = 2
@@ -74,7 +75,8 @@ class Board:
         
         if all(diagonal_verified):
             return True
-    
+
+        return False #caso de não vitoria
         
         
         
