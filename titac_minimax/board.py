@@ -7,7 +7,6 @@ class Board:
     
     def print_board(self):
         '''prints the current board in the terminal'''
-        print()
         for i in range(3):
             print(f"  {self.board[i][0]}  |  {self.board[i][1]}  |  {self.board[i][2]}  ")
     
@@ -21,14 +20,12 @@ class Board:
     
     def set_letter(self, letter, row, column):
         '''assigns the X or O to the informed tile'''
+        if self.check_tile(row, column):
+            self.board[row-1][column-1] = letter
+            return True
         
-        while not self.check_tile(row, column):
-            print("can't place in this tile, choose another spot!")
-            row = int(input("choose the row: "))
-            column = int(input("choose the new column: "))
-        
-        #letter = "  "+letter+"  "
-        self.board[row-1][column-1] = letter
+        #in case the tile is already ocupied
+        return False
     
     def check_win(self, letter):
         '''verifies all the win conditions'''
