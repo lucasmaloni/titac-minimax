@@ -16,7 +16,7 @@ class Board:
     
     def check_tile(self, row, column):
         '''returns boolean value if the picked tile is empty'''
-        return self.board[row-1][column-1] == self.EMPTY_SPACE
+        return self.board[row][column] == self.EMPTY_SPACE
     
     def set_letter(self, letter, row, column):
         '''assigns the X or O to the informed tile'''
