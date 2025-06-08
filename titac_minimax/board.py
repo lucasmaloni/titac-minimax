@@ -4,6 +4,7 @@ class Board:
         self.EMPTY_SPACE = ' '
         self.board_size = 3
         self.board = [[self.EMPTY_SPACE for i in range(self.board_size)] for i in range(self.board_size)]
+        self.possible_moves = []
     
     def print_board(self):
         '''prints the current board in the terminal'''
@@ -83,3 +84,16 @@ class Board:
                         return False
             
             return True
+    
+    def get_possible_moves(self):
+        '''returns the list of every possible combination of line and column to play'''
+        self.possible_moves.clear()
+        for i in range(self.board_size):
+            for j in range(self.board_size):
+                if self.board[i][j] == self.EMPTY_SPACE:
+                    self.possible_moves.append((i, j))
+        
+        return self.possible_moves
+
+    
+            
