@@ -76,14 +76,19 @@ class Game:
             return self.evaluate(board)
 
         if max_player:
-            best_score = -float('inf')
+            '''machine scenario'''
+            max_score = -float('inf')
             for move in board.get_possible_moves():
                 board_copy = self.copy_board(board)
                 board_copy.set_letter("O", *move)
-                
-        
-        
-#testing
-jogo = Game()
+                max_score = max(max_score, self.minimax(board_copy, False))
+            return max_score
 
-jogo.run()
+        if not max_player:
+            '''human scenario'''
+            min_score = float('inf')
+            for move in board.get_possible_moves():
+                board_copy = self.copy_board(board)
+                board_copy.set_letter("X", *move)
+                min_score = min(min_score, self.minimax(board_copy, True))
+            return min_score
