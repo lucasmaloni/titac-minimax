@@ -42,7 +42,19 @@ class Game:
             self.current_player = self.players[1]
         else:
             self.current_player = self.players[0]     
-            
+    
+    def evaluate(self):
+        '''evaluates and return the current state of the game'''
+        
+        if self.board.check_win(self.players[0]):
+            return -10
+        elif self.board.check_win(self.players[1]):
+            return 10
+        
+        if self.board.check_draw():
+            return 0
+
+        return
 
 #testing
 jogo = Game()
