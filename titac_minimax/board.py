@@ -4,7 +4,6 @@ class Board:
         self.EMPTY_SPACE = ' '
         self.board_size = 3
         self.board = [[self.EMPTY_SPACE for i in range(self.board_size)] for i in range(self.board_size)]
-        self.possible_moves = []
     
     def print_board(self):
         '''prints the current board in the terminal'''
@@ -30,7 +29,6 @@ class Board:
     
     def check_win(self, letter):
         '''verifies all the win conditions'''
-        #letter = "  "+letter+"  "
         
         #checks for wins on the rows
         for i in range(self.board_size):
@@ -87,13 +85,13 @@ class Board:
     
     def get_possible_moves(self):
         '''returns the list of every possible combination of line and column to play'''
-        self.possible_moves.clear()
+        possible_moves = []
         for i in range(self.board_size):
             for j in range(self.board_size):
                 if self.board[i][j] == self.EMPTY_SPACE:
-                    self.possible_moves.append((i, j))
+                    possible_moves.append((i, j))
         
-        return self.possible_moves
-
+        return possible_moves
     
-            
+    def terminal(self):
+        return self.check_win("O") or self.check_win("X") or self.check_draw()

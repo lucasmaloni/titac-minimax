@@ -1,4 +1,5 @@
 from board import Board
+import copy
 
 class Game:
     
@@ -45,7 +46,6 @@ class Game:
     
     def evaluate(self):
         '''evaluates and return the current state of the game'''
-        
         if self.board.check_win(self.players[0]):
             return -10
         elif self.board.check_win(self.players[1]):
@@ -56,6 +56,17 @@ class Game:
 
         return
 
+    def copy_board(self): #provisory
+        board_copy = copy.deepcopy(self.board.board)
+        return board_copy
+
+    def minimax(self):
+        ''''''
+        if self.board.terminal():
+            return self.evaluate()
+
+        return
+        
 #testing
 jogo = Game()
 
