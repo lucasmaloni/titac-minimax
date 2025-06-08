@@ -6,7 +6,7 @@ The visualization part of the project intends to ease the compreehension over bi
 
 # Current progress:
 
-- Tic tac toe working for 2 human players;
+- Tic tac toe working, it's possible to play against the AI, with the minimax algorithm determining the decisions
 
 # Technologies used:
 
