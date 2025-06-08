@@ -21,7 +21,7 @@ class Board:
     def set_letter(self, letter, row, column):
         '''assigns the X or O to the informed tile'''
         if self.check_tile(row, column):
-            self.board[row-1][column-1] = letter
+            self.board[row][column] = letter
             return True
         
         #in case the tile is already ocupied
@@ -29,6 +29,7 @@ class Board:
     
     def check_win(self, letter):
         '''verifies all the win conditions'''
+        #letter = "  "+letter+"  "
         
         #checks for wins on the rows
         for i in range(self.board_size):
@@ -82,7 +83,7 @@ class Board:
                         return False
             
             return True
-    
+     
     def get_possible_moves(self):
         '''returns the list of every possible combination of line and column to play'''
         possible_moves = []

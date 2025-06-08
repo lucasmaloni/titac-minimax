@@ -16,8 +16,8 @@ class Game:
                 self.board.print_board()
                 
                 while True: #player input loop
-                    row = int(input("row: "))
-                    column = int(input("column: "))
+                    row = int(input("row: "))-1
+                    column = int(input("column: "))-1
                     
                     if self.board.set_letter(self.current_player, row, column):
                         print(f'The decision was made, player X!\n') #end of the turn
@@ -64,17 +64,24 @@ class Game:
 
         return
 
-    def copy_board(self): #provisory
+    def copy_board(self, board): #provisory
         '''we copy the board Object for further use in the minimax'''
-        board_copy = copy.deepcopy(self.board)
+        board_copy = copy.deepcopy(board)
         return board_copy
 
     def minimax(self, board: Board, max_player: bool):
         ''''''
+        
         if board.terminal():
             return self.evaluate(board)
 
-        return
+        if max_player:
+            best_score = -float('inf')
+            for move in board.get_possible_moves():
+                board_copy = self.copy_board(board)
+                board_copy.set_letter("O", *move)
+                
+        
         
 #testing
 jogo = Game()
