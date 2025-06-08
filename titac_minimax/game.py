@@ -26,9 +26,10 @@ class Game:
                         print('This play is not valid, pick a new one:')
             
             if self.current_player == "O":
-                #the machine logic will enter here - further implementation required!
                 print("now the machine must play")
-                break
+                best_move = self.find_best_move(self.board)
+                self.board.set_letter("O", *best_move)
+                print('the machine have played!')
                
             self.board.print_board()
             
@@ -70,8 +71,7 @@ class Game:
         return board_copy
 
     def minimax(self, board: Board, max_player: bool):
-        ''''''
-        
+        '''the minimax algorithm implemented'''
         if board.terminal():
             return self.evaluate(board)
 
@@ -79,7 +79,7 @@ class Game:
             '''machine scenario'''
             max_score = -float('inf')
             for move in board.get_possible_moves():
-                board_copy = self.copy_board(board)
+                board_copy = copy.deepcopy(board)
                 board_copy.set_letter("O", *move)
                 max_score = max(max_score, self.minimax(board_copy, False))
             return max_score
@@ -88,7 +88,27 @@ class Game:
             '''human scenario'''
             min_score = float('inf')
             for move in board.get_possible_moves():
-                board_copy = self.copy_board(board)
+                board_copy = copy.deepcopy(board)
                 board_copy.set_letter("X", *move)
                 min_score = min(min_score, self.minimax(board_copy, True))
             return min_score
+    
+    def find_best_move(self, board: Board):
+        '''finds the best move for the machine to play'''
+        max_score = -float('inf')
+        best_move = None
+        
+        for move in board.get_possible_moves():
+            board_copy = copy.deepcopy(board)
+            board_copy.set_letter("O", *move)
+            score = self.minimax(board_copy, False)
+            if score > max_score:
+                max_score = score
+                best_move = move
+        
+        #returns a tuple that indicates the best position to be played
+        return best_move
+
+#testing
+jogo = Game()
+jogo.run()
