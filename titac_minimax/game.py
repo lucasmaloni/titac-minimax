@@ -1,4 +1,5 @@
 from board import Board
+from node import Node
 import copy
 
 class Game:
@@ -73,25 +74,41 @@ class Game:
     def minimax(self, board: Board, max_player: bool):
         '''the minimax algorithm implemented'''
         if board.terminal():
-            return self.evaluate(board)
+            score = self.evaluate(board)
+            terminal_node = Node(score) #at the end of the recursion, we assign a new and final node with a score to it
+            return score, terminal_node
 
         if max_player:
             '''machine scenario'''
             max_score = -float('inf')
+            
+            #we create a new node, that have a list of nodes for every possible machine move in the moves list
+            current_node = Node()
             for move in board.get_possible_moves():
                 board_copy = copy.deepcopy(board)
                 board_copy.set_letter("O", *move)
-                max_score = max(max_score, self.minimax(board_copy, False))
-            return max_score
+                minimax_value, child_node = self.minimax(board_copy, False)
+                current_node.children.append(child_node)
+                max_score = max(max_score, minimax_value)
+                
+            current_node.score = max_score
+            return max_score, current_node
 
         if not max_player:
             '''human scenario'''
             min_score = float('inf')
+            
+            #we create a new node, that have a list of nodes for every possible human move in the moves list
+            current_node = Node()
             for move in board.get_possible_moves():
                 board_copy = copy.deepcopy(board)
                 board_copy.set_letter("X", *move)
-                min_score = min(min_score, self.minimax(board_copy, True))
-            return min_score
+                minimax_value, child_node = self.minimax(board_copy, True)
+                current_node.children.append(child_node)
+                min_score = min(min_score, minimax_value)
+            
+            current_node.score = min_score
+            return min_score, current_node
     
     def find_best_move(self, board: Board):
         '''finds the best move for the machine to play'''
