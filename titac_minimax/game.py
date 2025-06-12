@@ -6,7 +6,7 @@ class Game:
     
     def __init__(self):
         self.board = Board()
-        self.current_player = "X"
+        self.current_player = "O"
         
     def run(self):
         '''the main structure of the game and it's turn based logic'''
@@ -28,7 +28,7 @@ class Game:
             
             if self.current_player == "O":
                 print("now the machine must play")
-                best_move = self.find_best_move(self.board)
+                best_move, root_node = self.find_best_move(self.board)
                 self.board.set_letter("O", *best_move)
                 print('the machine have played!')
                
@@ -65,11 +65,6 @@ class Game:
             return 0
 
         return
-
-    def copy_board(self, board): #provisory
-        '''we copy the board Object for further use in the minimax'''
-        board_copy = copy.deepcopy(board)
-        return board_copy
 
     def minimax(self, board: Board, max_player: bool):
         '''the minimax algorithm implemented'''
@@ -114,17 +109,21 @@ class Game:
         '''finds the best move for the machine to play'''
         max_score = -float('inf')
         best_move = None
+        root_node = Node()
         
         for move in board.get_possible_moves():
             board_copy = copy.deepcopy(board)
             board_copy.set_letter("O", *move)
-            score = self.minimax(board_copy, False)
+            score, child_node = self.minimax(board_copy, False)
+            child_node.move = move
+            root_node.children.append(child_node)
             if score > max_score:
                 max_score = score
                 best_move = move
         
         #returns a tuple that indicates the best position to be played
-        return best_move
+        root_node.move = best_move
+        return best_move, root_node
 
 #testing
 jogo = Game()
