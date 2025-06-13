@@ -13,5 +13,3 @@ class Plotter:
         print(f"{' ' * depth}Nó com score: {root_node.score} e jogada: {root_node.move}")
         for child in root_node.children:
             self.print_root_info(child, depth+1)
-        
-        return

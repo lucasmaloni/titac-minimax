@@ -87,6 +87,7 @@ class Game:
                 board_copy = copy.deepcopy(board)
                 board_copy.set_letter("O", *move)
                 minimax_value, child_node = self.minimax(board_copy, False)
+                child_node.move = move
                 current_node.children.append(child_node)
                 max_score = max(max_score, minimax_value)
                 
@@ -103,6 +104,7 @@ class Game:
                 board_copy = copy.deepcopy(board)
                 board_copy.set_letter("X", *move)
                 minimax_value, child_node = self.minimax(board_copy, True)
+                child_node.move = move
                 current_node.children.append(child_node)
                 min_score = min(min_score, minimax_value)
             

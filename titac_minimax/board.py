@@ -29,7 +29,6 @@ class Board:
     
     def check_win(self, letter):
         '''verifies all the win conditions'''
-        #letter = "  "+letter+"  "
         
         #checks for wins on the rows
         for i in range(self.board_size):
