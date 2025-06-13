@@ -1,12 +1,13 @@
 from board import Board
 from node import Node
+from plotter import Plotter
 import copy
 
 class Game:
     
     def __init__(self):
         self.board = Board()
-        self.current_player = "O"
+        self.current_player = "X"
         
     def run(self):
         '''the main structure of the game and it's turn based logic'''
@@ -29,6 +30,8 @@ class Game:
             if self.current_player == "O":
                 print("now the machine must play")
                 best_move, root_node = self.find_best_move(self.board)
+                plotter = Plotter()
+                plotter.print_root_info(root_node)
                 self.board.set_letter("O", *best_move)
                 print('the machine have played!')
                
@@ -58,6 +61,7 @@ class Game:
         '''evaluates and return the current state of the game'''
         if board.check_win("X"): #human victory
             return -10
+        
         elif board.check_win("O"): #machine victory
             return 10
         
