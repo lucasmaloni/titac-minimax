@@ -1,6 +1,6 @@
-from board import Board
-from node import Node
-from plotter import Plotter
+from entities.board import Board
+from entities.node import Node
+from src.plotter import Plotter
 import copy
 
 class Game:
@@ -135,7 +135,3 @@ class Game:
         #returns a tuple that indicates the best position to be played
         root_node.move = best_move
         return best_move, root_node
-
-#testing
-jogo = Game()
-jogo.run()
