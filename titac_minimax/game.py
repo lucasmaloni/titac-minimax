@@ -33,9 +33,8 @@ class Game:
                 best_move, root_node = self.find_best_move(self.board)
                 self.board.set_letter("O", *best_move)
                 print('the machine have played!')
-                #plots current tree
-                self.plotter.plot_tree(root_node)
-               
+                self.plotter.plot_tree(root_node) #plots current tree
+            
             self.board.print_board()
             
             if self.board.check_win(self.current_player):
