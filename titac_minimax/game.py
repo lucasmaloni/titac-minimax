@@ -9,10 +9,12 @@ class Game:
         self.board = Board()
         self.current_player = "X"
         self.plotter = Plotter()
+        self.round = 1
         
     def run(self):
         '''the main structure of the game and it's turn based logic'''
         while True:
+            print(f'Round nº:{self.round}\n')
             
             if self.current_player == "X":
                 print(f'Player X, it is your turn!\nPlease inform the row and column to play:\n')
@@ -27,13 +29,15 @@ class Game:
                         break
                     else:
                         print('This play is not valid, pick a new one:')
-            
+                        
             if self.current_player == "O":
                 print("now the machine must play")
                 best_move, root_node = self.find_best_move(self.board)
                 self.board.set_letter("O", *best_move)
                 print('the machine have played!')
-                self.plotter.plot_tree(root_node) #plots current tree
+            
+                if self.round >= 5:
+                    self.plotter.plot_tree(root_node) #plots current tree
             
             self.board.print_board()
             
@@ -46,6 +50,7 @@ class Game:
                 break
             
             self.change_player()
+            self.round += 1
     
     def change_player(self):
         '''change current player based on current player'''
