@@ -1,5 +1,6 @@
 from node import Node
 import networkx as nx
+import matplotlib.pyplot as plt
 
 class Plotter:
     
@@ -9,10 +10,15 @@ class Plotter:
         node_labels = {}
         
         self.conect_nodes(root_node, graph, node_labels)
-        
+            
+        plt.figure(figsize = (15, 10))
+        positions = nx.drawing.nx_pydot.graphviz_layout(graph, prog='dot')
+        nx.draw(graph, positions, labels=node_labels, with_labels = True)
+        plt.show()
+            
     def conect_nodes(self, root_node: Node, graph, labels: dict):
         '''aux function that recursively conects nodes in the graph'''
-        labels[id(root_node)] = {"M:{root_node.move}", "S:{root_node.move}"}
+        labels[id(root_node)] = f"M:{root_node.move}\nS:{root_node.score}"
         graph.add_node(id(root_node))
 
         for child in root_node.children:
