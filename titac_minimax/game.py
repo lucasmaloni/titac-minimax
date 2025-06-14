@@ -8,6 +8,7 @@ class Game:
     def __init__(self):
         self.board = Board()
         self.current_player = "X"
+        self.plotter = Plotter()
         
     def run(self):
         '''the main structure of the game and it's turn based logic'''
@@ -30,10 +31,10 @@ class Game:
             if self.current_player == "O":
                 print("now the machine must play")
                 best_move, root_node = self.find_best_move(self.board)
-                plotter = Plotter()
-                plotter.print_root_info(root_node)
                 self.board.set_letter("O", *best_move)
                 print('the machine have played!')
+                #plots current tree
+                self.plotter.plot_tree(root_node)
                
             self.board.print_board()
             
