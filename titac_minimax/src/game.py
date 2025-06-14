@@ -133,5 +133,6 @@ class Game:
                 best_move = move
         
         #returns a tuple that indicates the best position to be played
+        root_node.score = max_score
         root_node.move = best_move
         return best_move, root_node
