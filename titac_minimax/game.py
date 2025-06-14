@@ -60,10 +60,10 @@ class Game:
     
     def evaluate(self, board):
         '''evaluates and return the current state of the game'''
-        if board.check_win("X"): #human victory
+        if board.check_win("X"): #human victory - min player
             return -10
         
-        elif board.check_win("O"): #machine victory
+        elif board.check_win("O"): #machine victory - max player
             return 10
         
         if board.check_draw():
