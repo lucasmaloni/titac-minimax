@@ -10,7 +10,8 @@ The visualization part of the project intends to ease the compreehension over bi
 
 - ~~Tic tac toe working for 2 human players~~
 - Tic tac toe working, it's possible to play against the AI, with the minimax algorithm determining the decisions
-- After the AI makes its move, the decision tree is plotted to reflect and visualize its current state in the game (the first plotted tree is extremely slow to render, so i will change the moment we start visualizing it, to only begin plotting it after the 3rd or 4th round)
+- After the AI makes its move, the decision tree is plotted to reflect and visualize its current state in the game ~~(the first plotted tree is extremely slow to render, so i will change the moment we start visualizing it, to only begin plotting it after the 3rd or 4th round) ~~
+- The decision tree graphic plotting is happening from the 5th round, i chose this due to performance and the graphic being actualy compreensible from this point in the game forward - currently, the plotted tree doesn't show the moves and scores used to calculate the best play
 
 ## Technologies used:
 
@@ -19,3 +20,24 @@ The visualization part of the project intends to ease the compreehension over bi
 - Networkx
 - Pydot
 - Graphviz
+
+## Instalation:
+
+To assure that the project works properly, you have to install all needed dependencies.
+
+1. Clone this repo:
+```bash
+git clone https://github.com/lucasmaloni/titac-minimax.git
+cd your-repo
+```
+
+2. Install all needed libraries with one command line:
+```bash
+pip install -r requirements.txt
+```
+**ATENTION: Graphviz must be installed folowing the instructions in this link -> https://graphviz.org/download/**
+
+3. Run the game:
+```bash
+python main.py
+```
