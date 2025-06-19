@@ -123,15 +123,16 @@ class Game:
         root_node = Node()
         
         for move in board.get_possible_moves():
-            board_copy = copy.deepcopy(board)
-            board_copy.set_letter("O", *move)
-            score, child_node = self.minimax(board_copy, False)
+            board_copy = copy.deepcopy(board)   #we create a copy of the board
+            board_copy.set_letter("O", *move)   #make the move in this parallel board
+            score, child_node = self.minimax(board_copy, False) #call minimax to recursively evaluate this move
             child_node.move = move
             root_node.children.append(child_node)
-            if score > max_score:
-                max_score = score
-                best_move = move
+            if score > max_score: #if the minimax score is bigger than the max score
+                max_score = score   #we change the current max score for the biggre one
+                best_move = move    #we change the best move - expecting the MAX result
         
         #returns a tuple that indicates the best position to be played
+        root_node.score = max_score
         root_node.move = best_move
         return best_move, root_node
