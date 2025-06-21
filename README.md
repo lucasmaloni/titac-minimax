@@ -26,7 +26,7 @@ The most rewarding moment of the project was seeing the AI's "mind" in action. T
 
 ![Decision Tree GIF](https://github.com/lucasmaloni/titac-minimax/blob/main/gif%20plot.gif)
 
-To make it easier to understand, the visualization in the GIF focuses on the tree's structure and complexity. However, the project also contains a branch that displays the scores and moves on each node.
+To make it easier to understand, the visualization in the GIF focuses on the tree's structure and complexity. However, the project displays the scores and moves on each node.
 
 The real challenge begins now: can you beat the machine?
 
