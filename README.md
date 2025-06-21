@@ -21,6 +21,17 @@ The visualization part of the project intends to ease the compreehension over bi
 - Pydot
 - Graphviz
 
+## The Result: A Glimpse into the Machine's Mind
+The most rewarding moment of the project was seeing the AI's "mind" in action. The GIF below shows the decision tree that the Minimax algorithm builds to find the perfect move.
+
+![Decision Tree GIF](https://github.com/lucasmaloni/titac-minimax/blob/main/gif%20plot.gif)
+
+To make it easier to understand, the visualization in the GIF focuses on the tree's structure and complexity. However, the project also contains a branch that displays the scores and moves on each node.
+
+The real challenge begins now: can you beat the machine?
+
+Clone the project and play against the AI! See in real-time how the tree's complexity decreases with each round and how the algorithm always finds the right answer to your moves.
+
 ## Instalation:
 
 To assure that the project works properly, you have to install all needed dependencies.
